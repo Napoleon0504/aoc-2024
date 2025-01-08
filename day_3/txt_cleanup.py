@@ -9,57 +9,6 @@ def main():
     print("Part1: ", mul_sum1)
     print("Part2: ", mul_sum2)
 
-def addition(s):
-    #2 find all instances of the 'mul where there is only (number,number) in that order
-    # else it is false
-    # Filter everything into a list
-    all_mul = s.split("mul")
-    do_or_dont = True
-    skip = False
-    return_numb = 0
-    for i in all_mul:
-        if not do_or_dont:
-            skip = True
-        # For next round
-        if "do()" in i:
-            do_or_dont = True
-        if "don't()" in i:
-            do_or_dont = False
-        #find index of first (
-        first_bracket_i = i.find("(")
-        if first_bracket_i != 0:
-            # The bracket is not right after the mul
-            continue
-        #find index of first )
-        last_bracket_i = i.find(")")
-        # Extract everything inbetween
-        res = i[first_bracket_i + 1: last_bracket_i]
-        # Check if rs has only num and ,
-        pattern = r'^[0-9,]+$'
-        if not re.match(pattern, res):
-            # Faulty
-            continue
-        else:
-            # Correct
-            if skip:
-                # Skip this one and go to the next one
-                continue
-            numb = res.split(",")
-            # Check if there are 2 numbers
-            if len(numb) != 2:
-                continue
-            # Sum all multiplications
-            else:
-                # Maka all numb into intigers
-                numb = [int(i) for i in numb]
-                print(numb)
-                line_mul = mul(numb[0],numb[1])
-                return_numb += line_mul
-                
-    return return_numb
-                
-def mul(a, b):
-    return a * b
 
 def addition1():
     with open("corrupted.txt", 'r') as f:
