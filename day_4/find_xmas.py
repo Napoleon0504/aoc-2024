@@ -9,7 +9,6 @@
 # diagonal left up
 # overlapping other words?
 
-import textwrap
 import re
 
 def main():
@@ -30,10 +29,10 @@ def find_horizontal_pattern(txt):
     with open(txt, 'r') as f:
         for line in f.readlines():
             # Find the pattern xmas or samx
-            print(line)
+            #print(line)
             matches1 = re.findall(r'SAMX',line)
             matches2 = re.findall(r'XMAS',line)
-            print(len(matches1) + len(matches2))
+            #print(len(matches1) + len(matches2))
             length += len(matches1) + len(matches2)
     f.close()
     return length
